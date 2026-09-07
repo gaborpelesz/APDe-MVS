@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.23.0)
 project(APD)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 if(POLICY CMP0146)
     cmake_policy(SET CMP0146 OLD)
 endif()
@@ -23,11 +26,11 @@ include_directories(
         ${Boost_INCLUDE_DIRS})
 include_directories(.)
 
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 --use_fast_math --maxrregcount=128 --ptxas-options=-v -std=c++11
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 --use_fast_math --maxrregcount=128 --ptxas-options=-v -std=c++17
         --compiler-options -Wall)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions(-std=c++11)
+    add_definitions(-std=c++17)
     add_definitions(-pthread)
     add_definitions(-Wall)
     add_definitions(-Wextra)
