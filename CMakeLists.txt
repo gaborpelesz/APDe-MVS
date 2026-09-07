@@ -12,7 +12,10 @@ if(POLICY CMP0167)
 endif()
 
 # recommand >=4.6.0
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED core imgproc imgcodecs calib3d)
+# opencv_calib3d names Eigen3::Eigen in its link interface in this toolchain's
+# OpenCVModules.cmake, so the imported target has to exist before generate.
+find_package(Eigen3 REQUIRED)
 # recommand >=1.78.0
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
