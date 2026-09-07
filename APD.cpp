@@ -326,9 +326,9 @@ bool ExportPointCloud(const path &point_cloud_path, std::vector<PointList> &poin
     out << "property float y\n";
     out << "property float z\n";
     if (export_color) {
-        out << "property uchar blue\n";
-        out << "property uchar green\n";
         out << "property uchar red\n";
+        out << "property uchar green\n";
+        out << "property uchar blue\n";
     }
     out << "end_header\n";
 
@@ -346,9 +346,9 @@ bool ExportPointCloud(const path &point_cloud_path, std::vector<PointList> &poin
             pixel[0] = static_cast<uchar>(pointcloud[idx].color.x);
             pixel[1] = static_cast<uchar>(pointcloud[idx].color.y);
             pixel[2] = static_cast<uchar>(pointcloud[idx].color.z);
-            out.write((char *) &pixel[0], sizeof(uchar));
-            out.write((char *) &pixel[1], sizeof(uchar));
             out.write((char *) &pixel[2], sizeof(uchar));
+            out.write((char *) &pixel[1], sizeof(uchar));
+            out.write((char *) &pixel[0], sizeof(uchar));
         }
     }
     out.close();
